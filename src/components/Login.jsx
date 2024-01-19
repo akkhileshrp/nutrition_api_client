@@ -1,9 +1,13 @@
 import React, { useState } from "react";
 import "./Login.css";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import toast, { Toaster } from "react-hot-toast";
+import { useContext } from "react";
+import { AuthContext } from "../context/AuthContext";
 
 const Login = () => {
+  const navigate = useNavigate();
+  const loggedUserData = useContext(AuthContext);
   const [logindata, setLogindata] = useState({
     email: "",
     password: "",
@@ -41,6 +45,8 @@ const Login = () => {
       .then((data) => {
         if (data.token) {
           localStorage.setItem("user-data", JSON.stringify(data));
+          navigate("/track");
+          loggedUserData.setLoggeduser(data);
         }
       })
       .catch((err) => console.log(err));
