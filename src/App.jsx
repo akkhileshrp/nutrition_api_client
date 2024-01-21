@@ -10,7 +10,7 @@ import "./App.css";
 
 const App = () => {
   const [loggedUser, setLoggeduser] = useState(
-    localStorage.getItem("user-data")
+    JSON.parse(localStorage.getItem("user-data"))
   );
   return (
     <>
