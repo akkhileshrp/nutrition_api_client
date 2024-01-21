@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState } from "react";
+import React, { useContext, useState } from "react";
 import { AuthContext } from "../context/AuthContext";
 import "./Track.css";
 import Food from "./Food";
@@ -7,9 +7,6 @@ const Track = () => {
   const loggedUserData = useContext(AuthContext);
   const [foodItems, setFoodItems] = useState([]);
   const [food, setFood] = useState(null);
-  useEffect(() => {
-    console.log(food);
-  });
   const searchFood = (e) => {
     if (e.target.value !== "") {
       fetch(`http://localhost:8000/foods/${e.target.value}`, {
